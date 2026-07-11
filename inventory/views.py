@@ -1,3 +1,13 @@
-from django.shortcuts import render
+from rest_framework import viewsets, filters
+from .models import Categoria, Producto
+from .serializers import CategoriaSerializer, ProductoSerializer
 
-# Create your views here.
+class CategoriaViewSet(viewsets.ModelViewSet):
+    queryset = Categoria.objects.all()
+    serializer_class = CategoriaSerializer
+
+class ProductoViewSet(viewsets.ModelViewSet):
+    queryset = Producto.objects.all()
+    serializer_class = ProductoSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['nombre', 'codigo'] # Permite la búsqueda solicitada en la HU-002
