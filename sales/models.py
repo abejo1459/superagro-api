@@ -24,7 +24,7 @@ class DetalleVenta(models.Model):
     precio_unitario = models.DecimalField(max_digits=10, decimal_places=2)
 
     def save(self, *args, **kwargs):
-        # Lógica para la HU-003: Descuento automático de inventario
+        # US-003: Descuento automático de inventario
         if not self.pk:  # Si es un registro nuevo
             if self.producto.stock >= self.cantidad:
                 self.producto.stock -= self.cantidad

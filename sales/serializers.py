@@ -17,7 +17,7 @@ class VentaSerializer(serializers.ModelSerializer):
         detalles_data = validated_data.pop('detalles')
         venta = Venta.objects.create(**validated_data)
         
-        # Guardar cada detalle de la venta (esto disparará el descuento del stock)
+        # Saves each detail of sales
         for detalle_data in detalles_data:
             DetalleVenta.objects.create(venta=venta, **detalle_data)
             

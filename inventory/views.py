@@ -10,4 +10,4 @@ class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['nombre', 'codigo'] # Permite la búsqueda solicitada en la HU-002
+    search_fields = ['nombre', 'codigo'] # Allows request search in US-002

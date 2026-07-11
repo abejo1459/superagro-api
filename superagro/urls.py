@@ -22,7 +22,7 @@ from users.views import UsuarioViewSet
 from inventory.views import CategoriaViewSet, ProductoViewSet
 from sales.views import VentaViewSet
 
-# El router crea automáticamente las URLs para los ViewSets
+# Router creates the URLs to ViewSets
 router = DefaultRouter()
 router.register(r'usuarios', UsuarioViewSet)
 router.register(r'categorias', CategoriaViewSet)
@@ -31,5 +31,5 @@ router.register(r'ventas', VentaViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)), # Todas las rutas de la API tendrán el prefijo /api/
+    path('api/', include(router.urls)), # All API routes will have prefix /api/
 ]
