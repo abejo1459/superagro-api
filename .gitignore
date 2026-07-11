@@ -1,0 +1,33 @@
+# Virtual environment
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Compiled python files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Files of local DB
+db.sqlite3
+db.sqlite3-journal
+
+# environment files and sensible configurations
+.env
+local_settings.py
+secrets.json
+
+# Logs files
+*.log
+*.pot
+*.py.class
+
+# IDEs editors
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
