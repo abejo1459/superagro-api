@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Usuario
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,3 +12,12 @@ class UsuarioSerializer(serializers.ModelSerializer):
         # Usamos create_user para que encripte la contraseña automáticamente
         user = Usuario.objects.create_user(**validated_data)
         return user
+    
+class CustomTokenSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        # Añadimos datos extra a la respuesta JSON del login
+        data['user_id'] = self.user.id
+        data['rol'] = self.user.rol
+        data['username'] = self.user.username
+        return data
