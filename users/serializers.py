@@ -8,15 +8,14 @@ class UsuarioSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'password', 'first_name', 'last_name', 'email', 'cedula', 'telefono', 'direccion', 'rol']
         extra_kwargs = {'password': {'write_only': True}}
 
+        # Uses create_user to encrypt the password
     def create(self, validated_data):
-        # Usamos create_user para que encripte la contraseña automáticamente
         user = Usuario.objects.create_user(**validated_data)
         return user
     
 class CustomTokenSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
-        # Añadimos datos extra a la respuesta JSON del login
         data['user_id'] = self.user.id
         data['rol'] = self.user.rol
         data['username'] = self.user.username
