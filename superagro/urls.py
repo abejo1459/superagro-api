@@ -22,6 +22,8 @@ from users.views import UsuarioViewSet
 from inventory.views import CategoriaViewSet, ProductoViewSet
 from sales.views import VentaViewSet
 
+from users.views import UsuarioViewSet, CustomLoginView
+
 # Router creates the URLs to ViewSets
 router = DefaultRouter()
 router.register(r'usuarios', UsuarioViewSet)
@@ -32,4 +34,5 @@ router.register(r'ventas', VentaViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)), # All API routes will have prefix /api/
+    path('api/login/', CustomLoginView.as_view(), name='token_obtain_pair'), # Login endpoint
 ]
